@@ -1,0 +1,26 @@
+source: pwc
+raw_paths:
+  abstracts: ./data/pwc/raw/papers-with-abstracts.json.gz
+  links:     ./data/pwc/raw/links-between-papers-and-code.json.gz
+  eval:      ./data/pwc/raw/evaluation-tables.json.gz
+  methods:   ./data/pwc/raw/methods.json.gz
+  datasets:  ./data/pwc/raw/datasets.json.gz
+             # ??
+processed_path: ./data/pwc/processed/docs.jsonl
+chunks_path:    ./data/pwc/chunks/chunks.jsonl
+
+text_fields: ["title", "abstract"]
+meta_fields: ["url", "tasks", "methods", "datasets", "code"]  # ?????
+
+chunk:
+  size: 1200
+  overlap: 200
+
+embedding:
+  model_name: BAAI/bge-m3
+  device: auto
+  normalize: true
+
+index:
+  kind: faiss
+  output_dir: ./indexes/pwc/bge-m3/faiss
